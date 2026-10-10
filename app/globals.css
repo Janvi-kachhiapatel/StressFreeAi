@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+  Design intent: calm, low-stimulation, readable at 3am on a phone.
+  Warm off-white in light mode (pure white glares at night), deep slate in dark.
+  One accent colour, used sparingly, so nothing feels like a game or a dashboard.
+*/
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --bg: #f7f5f2;
+  --surface: #ffffff;
+  --surface-2: #f1eee9;
+  --ink: #221f1c;
+  --ink-soft: #5c5650;
+  --ink-faint: #8a8279;
+  --line: #e2ddd5;
+  --accent: #1f6f68;
+  --accent-ink: #ffffff;
+  --accent-soft: #e3f0ee;
+  --warn: #a25a12;
+  --warn-soft: #fdf1e3;
+  --danger: #a8322d;
+  --danger-soft: #fdeceb;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #14161a;
+    --surface: #1c1f24;
+    --surface-2: #23272d;
+    --ink: #eceef0;
+    --ink-soft: #b3b8bf;
+    --ink-faint: #858b93;
+    --line: #2e333a;
+    --accent: #6fc7bd;
+    --accent-ink: #10201e;
+    --accent-soft: #1d2f2d;
+    --warn: #e0a464;
+    --warn-soft: #2b2318;
+    --danger: #ef837d;
+    --danger-soft: #2e1d1c;
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, "Segoe UI", Roboto,
+    "Noto Sans", "Noto Sans Devanagari", "Noto Sans Gujarati", "Nirmala UI", "Shruti",
+    "Gujarati Sangam MN", sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+html {
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  /* Long-form reading: looser leading, capped measure handled per-component. */
+  line-height: 1.6;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+/* Visible, calm focus ring for keyboard users. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+textarea {
+  field-sizing: content;
+}
+
+/* Anyone who has asked their OS to reduce motion should get stillness. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes sf-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes sf-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sf-rise {
+  animation: sf-rise 260ms ease-out both;
+}
+
+.sf-typing span {
+  animation: sf-pulse 1.4s ease-in-out infinite;
+}
+.sf-typing span:nth-child(2) {
+  animation-delay: 0.18s;
+}
+.sf-typing span:nth-child(3) {
+  animation-delay: 0.36s;
 }

@@ -1,0 +1,8 @@
+✓  Gather remaining context (helplines, demo templates, UI patterns, globals.css)
+✓  Build student-support flow: /student page, exam planner, focus timer, career + faculty scripts, small goals (trilingual)
+✓  Wire student flow into nav, home page and chat study chips
+✓  Replace boilerplate README with real project + deploy docs
+✓  Make rate limiter swap-able for a shared store (deployable)
+✓  Build Expo mobile app shell that reuses the server safety API
+☐  Add accounts/sync (Supabase) or a documented integration path
+☐  Verify: typecheck, lint, build, smoke test, browser check

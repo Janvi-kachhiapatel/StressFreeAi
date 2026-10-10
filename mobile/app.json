@@ -1,0 +1,33 @@
+{
+  "expo": {
+    "name": "StressFree AI",
+    "slug": "stressfree-ai",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "stressfreeai",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-router"],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "ai.stressfree.app"
+    },
+    "android": {
+      "package": "ai.stressfree.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
